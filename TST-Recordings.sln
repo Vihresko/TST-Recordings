@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TST.Web", "TST.Web\TST.Web.csproj", "{9B00F804-178D-4FE9-9687-FDF564923D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TST.Web", "TST.Web\TST.Web.csproj", "{9B00F804-178D-4FE9-9687-FDF564923D65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TST.Database", "TST.Database\TST.Database.csproj", "{2004718A-FD7A-4459-990A-D6F33019F8E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TST.Database", "TST.Database\TST.Database.csproj", "{2004718A-FD7A-4459-990A-D6F33019F8E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TST.Core", "TST.Core\TST.Core.csproj", "{5728CFBE-C6B2-4571-970A-7CBA28060E4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2004718A-FD7A-4459-990A-D6F33019F8E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2004718A-FD7A-4459-990A-D6F33019F8E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2004718A-FD7A-4459-990A-D6F33019F8E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5728CFBE-C6B2-4571-970A-7CBA28060E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5728CFBE-C6B2-4571-970A-7CBA28060E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5728CFBE-C6B2-4571-970A-7CBA28060E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5728CFBE-C6B2-4571-970A-7CBA28060E4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

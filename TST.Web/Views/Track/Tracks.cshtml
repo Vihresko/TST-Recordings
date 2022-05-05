@@ -1,1 +1,27 @@
-﻿<h1>All Tracks</h1>
+﻿@{
+    ViewData["Title"] = "Tracks";
+}
+@model TrackModel
+
+<h1>All Tracks</h1>
+
+<form asp-controller="Track" asp-action="UploadTrack" method="post">
+    <div class="mb-3">
+
+        <label for=@Model.Name class="form-label">Name</label>
+        <input asp-for=@Model.Name class="form-control">
+        <span asp-validation-for=@Model.Name class="text-danger"></span>
+
+        <label for="@Model.Description class="form-label">Description</label>
+        <textarea asp-for=@Model.Description class="form-control"></textarea>
+        <span asp-validation-for=@Model.Description class="text-danger"></span>
+
+        <label for="formFile" class="form-label">Track data</label>
+        <input asp-for=@Model.TrackData class="form-control" type="file">
+        <span asp-validation-for=@Model.TrackData class="text-danger"></span>
+
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit">Upload</button>
+        </div>
+    </div>
+</form>
