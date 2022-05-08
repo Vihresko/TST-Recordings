@@ -13,8 +13,11 @@ namespace TST.Database.ViewModels.Track
         [MaxLength(Constant.Database.TRACK_DESCRIPTION_MAX_LENGHT)]
         public string? Description { get; set; }
 
-        [Required]
+       // [DataType(DataType.Upload)]
+       // [Required]
         [MaxLength(Constant.Database.TRACK_DATA_MAX_LENGHT)]
-        public byte[] TrackData { get; set; }
+        public byte[]? TrackData { get; set; }
+
+        public ICollection<TrackModel> AllTracks { get; set; } = new List<TrackModel>();
     }
 }

@@ -1,11 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Tracks";
 }
-@model TrackModel
+@model List<TrackModel>
 
 <h1>All Tracks</h1>
+@foreach (var track in Model)
+{
+    <h6>@track.Name</h6>
+    <h6>@track.Id</h6>
+    <a href="/Track/DownloadTrack?trackId=@track.Id">Download</a>
+}
 
-<form asp-controller="Track" asp-action="UploadTrack" method="post">
+
+@*<form asp-controller="Track" asp-action="UploadTrack" enctype="multipart/form-data" method="post">
     <div class="mb-3">
 
         <label for=@Model.Name class="form-label">Name</label>
@@ -17,7 +24,7 @@
         <span asp-validation-for=@Model.Description class="text-danger"></span>
 
         <label for="formFile" class="form-label">Track data</label>
-        <input asp-for=@Model.TrackData class="form-control" type="file">
+        <input name="file" class="form-control" type="file" id="trackData">
         <span asp-validation-for=@Model.TrackData class="text-danger"></span>
 
         <div class="d-grid gap-2">
@@ -25,3 +32,4 @@
         </div>
     </div>
 </form>
+*@
