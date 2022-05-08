@@ -9,5 +9,8 @@
     <h6>@track.Name</h6>
     <h6>@track.Id</h6>
     <a href="/Track/DownloadTrack?trackId=@track.Id">Download</a>
+    <audio controls autobuffer="autobuffer">
+        <source src='@ViewBag.Data' />
+    </audio>
 }
 

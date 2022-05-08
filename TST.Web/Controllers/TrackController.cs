@@ -7,17 +7,22 @@ namespace TST.Web.Controllers
     public class TrackController : Controller
     {
         private readonly ITrackService trackService;
-        public TrackController(ITrackService _trackService)
+        private readonly IWebHostEnvironment environment;
+        public TrackController(ITrackService _trackService, IWebHostEnvironment _enviroment)
         {
             trackService = _trackService;
+            environment = _enviroment;
         }
         public async Task<IActionResult> Tracks()
         {
             var tracks = await trackService.GetTracks();
+            var track = await trackService.GetTrackById(1);
+            ViewBag.Data = "data:audio/wav;base64," + Convert.ToBase64String(track.TrackData);
+
             return View(tracks);
         }
 
-        public async Task<IActionResult> UploadTrack()
+        public IActionResult UploadTrack()
         {
             return View(new TrackModel());
         }
@@ -30,7 +35,7 @@ namespace TST.Web.Controllers
             }
 
 
-            if (file.Length > 0)
+            if (file != null && file.Length > 0)
             {
                 using (var ms = new MemoryStream())
                 {
@@ -41,7 +46,7 @@ namespace TST.Web.Controllers
                     // act on the Base64 data
                 }
             }
-                await trackService.UploadTrack(model);
+            await trackService.UploadTrack(model);
             return RedirectToAction("Tracks");
         }
 
