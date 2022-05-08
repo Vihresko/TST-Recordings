@@ -29,19 +29,14 @@ namespace TST.Core.Services
 
         public async Task<ICollection<TrackModel>> GetTracks()
         {
-            var tracks = await database.Tracks.ToListAsync();
-            var model = new List<TrackModel>();
-            foreach (var track in tracks)
+            var tracks = await database.Tracks.Select(t => new TrackModel()
             {
-                model.Add(new TrackModel()
-                {
-                    Id = track.Id,
-                    Name = track.Name,
-                    Description = track.Description,
-                    TrackData = track.TrackData
-                });
-            }
-            return model;
+                Id = t.Id,
+                Name = t.Name,
+                Description = t.Description
+            }).ToListAsync();
+           
+            return tracks;
         }
 
         public async Task<bool> UploadTrack(TrackModel trackModel)

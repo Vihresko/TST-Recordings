@@ -14,10 +14,13 @@ namespace TST.Web.Controllers
         public async Task<IActionResult> Tracks()
         {
             var tracks = await trackService.GetTracks();
-            
             return View(tracks);
         }
 
+        public async Task<IActionResult> UploadTrack()
+        {
+            return View(new TrackModel());
+        }
         [HttpPost]
         public async Task<IActionResult> UploadTrack(TrackModel model, IFormFile file)
         {
@@ -46,7 +49,7 @@ namespace TST.Web.Controllers
         public async Task<IActionResult> DownloadTrack(int trackId)
         {
             var track = await trackService.GetTrackById(trackId);
-            return File(track.TrackData, "audio/mpeg", "track.mp3");
+            return File(track.TrackData, "audio/mpeg", $"{track.Name}.mp3");
         }
     }
 }
