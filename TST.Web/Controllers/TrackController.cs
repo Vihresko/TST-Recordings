@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using TST.Core.Interfaces;
 using TST.Database.ViewModels.Track;
 
@@ -7,19 +8,29 @@ namespace TST.Web.Controllers
     public class TrackController : Controller
     {
         private readonly ITrackService trackService;
-        private readonly IWebHostEnvironment environment;
-        public TrackController(ITrackService _trackService, IWebHostEnvironment _enviroment)
+        private readonly IMemoryCache memoryCash;
+        public TrackController(ITrackService _trackService, IMemoryCache _memoryCash)
         {
             trackService = _trackService;
-            environment = _enviroment;
+            memoryCash = _memoryCash;
         }
         public async Task<IActionResult> Tracks()
         {
             var tracks = await trackService.GetTracks();
-            var track = await trackService.GetTrackById(1);
-            ViewBag.Data = "data:audio/wav;base64," + Convert.ToBase64String(track.TrackData);
-
             return View(tracks);
+        }
+
+        public async Task<IActionResult> Play(int trackId)
+        {
+            TrackModel track = new TrackModel();
+            if (!memoryCash.TryGetValue($"trackId{trackId}", out track))
+            {
+                track = await trackService.GetTrackById(trackId);
+                memoryCash.Set($"trackId{trackId}", track, TimeSpan.FromSeconds(300));
+            }
+            var tracks = await trackService.GetTracks();
+            ViewBag.Data = "data:audio/wav;base64," + Convert.ToBase64String(track.TrackData);
+            return View("~/Views/Track/Tracks.cshtml", tracks);
         }
 
         public IActionResult UploadTrack()

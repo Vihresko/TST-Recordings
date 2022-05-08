@@ -23,7 +23,7 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 });
 
 builder.Services.AddScoped<ITrackService, TrackService>();
-
+builder.Services.AddMemoryCache();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

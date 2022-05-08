@@ -4,13 +4,14 @@
 @model List<TrackModel>
 
 <h1>All Tracks</h1>
+ <audio preload="none" autoplay="autoplay" controls autobuffer="autobuffer">
+        <source src='@ViewBag.Data' />
+    </audio>
 @foreach (var track in Model)
 {
     <h6>@track.Name</h6>
     <h6>@track.Id</h6>
     <a href="/Track/DownloadTrack?trackId=@track.Id">Download</a>
-    <audio controls autobuffer="autobuffer">
-        <source src='@ViewBag.Data' />
-    </audio>
+    <a href="/Track/Play?trackId=@track.Id">Play</a>
 }
 
